@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: app-deployment
+    name: wil-playground-deployment
     labels:
         app: app
 spec:
@@ -20,26 +20,10 @@ spec:
                   ports:
                       - containerPort: 8888
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-    name: app-ingress
-spec:
-    rules:
-        - http:
-              paths:
-                  - path: /
-                    pathType: Prefix
-                    backend:
-                        service:
-                            name: app-service
-                            port:
-                                number: 80
----
 apiVersion: v1
 kind: Service
 metadata:
-    name: app-service
+    name: wil-playground-service
 spec:
     selector:
         app: app
